@@ -1,4 +1,4 @@
-// Winter 222
+// Winter'22
 // Instructor: Diba Mirza
 #include <iostream>
 #include <fstream>
