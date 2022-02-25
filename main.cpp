@@ -20,14 +20,9 @@ bool parseLine(string &line, string &movieName, double &movieRating);
 
 int main(int argc, char** argv){
   if(argc < 2){
-    cerr << "Not enough arguments provided (need at least 1)." << endl;
-    cerr << "Usage: " << argv[ 0 ] << " filename" << endl;
+    cerr << "Not enough arguments provided (need at least 1 argument)." << endl;
+    cerr << "Usage: " << argv[ 0 ] << " filename prefix1 prefix2 ... prefix n " << endl;
     exit(1);
-  }
-  
-  if(argc > 3) {
-    cerr << "Usage: " << argv[ 0 ] << " filename prefix" << endl;
-    exit(1); 
   }
 
 
@@ -39,7 +34,7 @@ int main(int argc, char** argv){
     exit(1);
   }
   
-//Create an object of type set to store all the movies
+//Create an object of a STL data-structure to store all the movies
 
 string line, movieName;
 double movieRating;
@@ -48,16 +43,26 @@ while (getline (movieFile, line) && parseLine(line, movieName, movieRating)){
   // Use std::string movieName and double movieRating
   // to construct your Movie objects
   // cout << movieName << " has rating " << movieRating << endl;
-  // insert elements into your set data structure
+  // insert elements into your data structure
 }
 
 movieFile.close();
 
+if(argc == 2){
+  //print all the movies in ascending alphabetical order of movie names
+  return 0;
+}
 
-cout << "Best movie is " << "replace this with the movie name" <<" with rating " << std::fixed << std::setprecision(1) << 10 << endl;
 
+//  For each prefix,
+//  Find all movies that have that prefix and store them in an appropriate data structure
+//  If no movie with that prefix exists print the following message
+cout<<"No movies found with prefix "<<"<replace with prefix>"<<endl<<endl;
 
-
+//  For each prefix,
+//  Print the highest rated movie with that prefix if it exists.
+cout << "Best movie with prefix "<<"<replace with prefix>"<<" is: " << "replace with moview name" <<" with rating " << std::fixed << std::setprecision(1) << "replace with movie rating"<< endl;
+    
 
 
 return 0;
