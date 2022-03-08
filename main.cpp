@@ -12,6 +12,9 @@
 #include <iomanip>
 #include <set>
 #include <queue>
+#include <forward_list>
+#include <list>
+#include "movies.h"
 using namespace std;
 
 
@@ -38,15 +41,37 @@ int main(int argc, char** argv){
 
 string line, movieName;
 double movieRating;
+Movie m;
+
+// list<Movie> movieList;
+// list<Movie>::iterator it;
+set<Movie> movieList;
+set<Movie>::iterator it;
+
 // Read each file and store the name and rating
-while (getline (movieFile, line) && parseLine(line, movieName, movieRating)){
+while (getline(movieFile, line) && parseLine(line, movieName, movieRating)){
   // Use std::string movieName and double movieRating
   // to construct your Movie objects
-  // cout << movieName << " has rating " << movieRating << endl;
+  //cout << movieName << " has rating " << movieRating << endl;
   // insert elements into your data structure
+  // movieName = line.substr(0, line.find(',') + 1);
+  // movieRating = stod(line.substr(line.find(',') + 1));
+
+  m.setMovieName(movieName);
+  m.setMovieRating(movieRating);
+
+  //movieList.push_back(m);
+  movieList.insert(m);
+
 }
 
+
 movieFile.close();
+
+//cout << endl << endl << endl;
+for (auto const& i : movieList) {
+  cout << i.getMovieName() << " has rating " << i.getMovieRating() << endl;
+}
 
 if(argc == 2){
   //print all the movies in ascending alphabetical order of movie names
@@ -71,20 +96,32 @@ return 0;
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
 
 
-
 bool parseLine(string &line, string &movieName, double &movieRating) {
   if(line.length() <= 0) return false;
   string tempRating = "";
 
   bool flag = false;
-  movieName = tempRating = "", movieRating = 0.0, flag = false;
+  movieName = tempRating = "";
+  movieRating = 0.0;
+  flag = false;
 
-  for (int i = 0; i < line.length(); i++){
-    if(flag) tempRating += line[i];
-    else if(line[i]==','&& line[0]!='"') flag = true;
+
+  for (int i = 0; i < line.length(); i++){  
+    if(flag){
+      tempRating += line[i];
+    }
+    else if(line[i]==','&& line[0]!='"'){
+      flag = true;
+    }
     else {
-		  if(i==0 && line[0]=='"') continue;
-		  if(line[i]=='"'){ i++; flag=true; continue;}
+		  if(i==0 && line[0]=='"'){
+        continue;
+      }
+		  if(line[i]=='"'){
+        i++;
+        flag=true; 
+        continue;
+      }
 		  movieName += line[i];
 	  }
   }
@@ -92,3 +129,23 @@ bool parseLine(string &line, string &movieName, double &movieRating) {
   movieRating = stod(tempRating);
   return true;
 }
+// bool parseLine(string &line, string &movieName, double &movieRating) {
+//   if(line.length() <= 0) return false;
+//   string tempRating = "";
+
+//   bool flag = false;
+//   movieName = tempRating = "", movieRating = 0.0, flag = false;
+
+//   for (int i = 0; i < line.length(); i++){
+//     if(flag) tempRating += line[i];
+//     else if(line[i]==','&& line[0]!='"') flag = true;
+//     else {
+// 		  if(i==0 && line[0]=='"') continue;
+// 		  if(line[i]=='"'){ i++; flag=true; continue;}
+// 		  movieName += line[i];
+// 	  }
+//   }
+  
+//   movieRating = stod(tempRating);
+//   return true;
+// }
