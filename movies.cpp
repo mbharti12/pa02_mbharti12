@@ -42,22 +42,67 @@ void Movie::setMovieRating(double movieRating){
 }
 
 bool Movie::operator<(const Movie& m) const{
-    if ((this->movieName).compare(m.movieName) < 0){
+    if (movieName.compare(m.movieName) < 0){
         return true;
     }
     return false;
 }
 
 bool Movie::operator==(const Movie& m) const{
-    if ((this->movieName).compare(m.movieName) == 0){
+    if (movieName.compare(m.movieName) == 0){
         return true;
     }
     return false;
 }
 
 bool Movie::operator>(const Movie& m) const{
-    if ((this->movieName).compare(m.movieName) > 0){
+    if (movieName.compare(m.movieName) > 0){
         return true;
     }
     return false;
+}
+
+bool Movie::operator<(const double& movieRating) const{
+    if (this->movieRating < movieRating){
+        return true;
+    }
+    return false;
+}
+
+bool Movie::operator==(const double& movieRating) const{
+    if (this->movieRating == movieRating){
+        return true;
+    }
+    return false;
+}
+
+bool Movie::operator>(const double& movieRating) const{
+    if (this->movieRating > movieRating){
+        return true;
+    }
+    return false;
+}
+
+bool Movie::operator=(const Movie& m){
+    this->movieName = m.movieName;
+    this->movieRating = m.movieRating;
+}
+
+bool Movie::isPrefix(string prefix) const{
+    bool wrongLetter = false;
+    if (movieName.size() >= prefix.size()){
+        for (int i = 0; i < prefix.size(); i++){
+            if (prefix.at(i) != movieName.at(i)){
+                wrongLetter = true;
+                break;
+            }
+        }
+        if (wrongLetter){
+            return false;
+        }
+    }
+    else if (movieName.size() < prefix.size()){
+        return false;
+    }
+    return true;
 }

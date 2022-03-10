@@ -12,14 +12,18 @@ class Movie{
         double getMovieRating() const;
         void setMovieName(string movieName);
         void setMovieRating(double movieRating);
+        bool isPrefix(string prefix) const;
         bool operator<(const Movie& m) const;
         bool operator==(const Movie& m) const;
         bool operator>(const Movie& m) const;
+        bool operator<(const double& movieRating) const;
+        bool operator==(const double& movieRating) const;
+        bool operator>(const double& movieRating) const;
+        bool operator=(const Movie& m);
 
     private:
         string movieName;
         double movieRating;
-
 };
 
 #endif
