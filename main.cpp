@@ -117,6 +117,7 @@ if (argc > 2){
   }
   for (auto movie: bestPrefixMovieList){
     cout << "Best movie with prefix " << prefix << " is: " << movie.getMovieName() << " with rating " << std::fixed << std::setprecision(1) << movie.getMovieRating() << endl;
+    //cout << movie.getMovieRating() << endl;
   }
 }
 
@@ -136,13 +137,13 @@ if (argc > 2){
 
 void printMovieList(set<Movie>& movieList){
     for (auto movie: movieList){
-      cout << movie.getMovieName() << ", " << movie.getMovieRating() << endl;
+      cout << movie.getMovieName() << ", " << std::fixed << std::setprecision(1) << movie.getMovieRating() << endl;
     }
 }
 
 void printMovieList(vector<Movie>& movieList){
     for (auto movie: movieList){
-      cout << movie.getMovieName() << ", " << movie.getMovieRating() << endl;
+      cout << movie.getMovieName() << ", " << std::fixed << std::setprecision(1) << movie.getMovieRating() << endl;
     }
 }
 
