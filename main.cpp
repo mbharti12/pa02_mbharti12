@@ -92,11 +92,13 @@ int deleteIndex;
 string prefix;
 int index;
 bool firstPass = true;
+vector<string> prefixList;
 
 if (argc > 2){
 
   for (int i = 2; i < argc; i++){
     prefix = argv[i];
+    prefixList.push_back(prefix);
 
     for (auto const& movie : movieList) {
       if (movie.isPrefix(prefix)){
@@ -115,9 +117,8 @@ if (argc > 2){
       prefixMovieList.clear();
     }
   }
-  for (auto movie: bestPrefixMovieList){
-    cout << "Best movie with prefix " << prefix << " is: " << movie.getMovieName() << " with rating " << std::fixed << std::setprecision(1) << movie.getMovieRating() << endl;
-    //cout << movie.getMovieRating() << endl;
+  for (int i = 0; i < prefixList.size(); i++){
+    cout << "Best movie with prefix " << prefixList.at(i) << " is: " << bestPrefixMovieList.at(i).getMovieName() << " with rating " << std::fixed << std::setprecision(1) << bestPrefixMovieList.at(i).getMovieRating() << endl;
   }
 }
 
