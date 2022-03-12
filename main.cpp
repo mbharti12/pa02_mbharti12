@@ -146,9 +146,9 @@ int main(int argc, char** argv){
 I've included comments in the above implementation of Part 2 to help describe its time complexity.
 
 The algorithm starts with the outermost for loop, which is used to iterate through each prefix. It runs an 'm' number of times.
-There are a couple of constant-time operations (storing the prefix value and appending it to the prefixMovieList vector). Then we get to another for loop, which 
-iterates an 'n' number of times through the entire movieList set, which stores the movies that are read in initially. Within this loop is an if statement
-and push_back function, which are each 1 constant-time operation. After the for loop, comes another if statement and its body, which we'll count as singular
+Within it is a couple of constant-time operations (storing the prefix value and appending it to the prefixMovieList vector). Then we get to another for loop, which 
+iterates an 'n' number of times through the entire movieList set, which stores the movies that are read initially. Within this loop is an if statement
+and push_back function, which are each 1 constant-time operation each. After the for loop, comes another if statement and its body, which we'll count as singular
 constant-time operations. Next, is the body of the following else statement, which adds significant complexity to the algorithm. The sort function sorts through
 the movies with the given prefix (by rating and then alphabetically if multiple movies have the same rating) and it has a linearithmic complexity (k*log(k)).
 Below that is the printMovieList function, which iterates through the sorted prefixMovieList vector a 'k' number of times. Below that are a few singular
